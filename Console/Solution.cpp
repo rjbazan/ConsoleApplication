@@ -40,3 +40,32 @@ int Solution::removeElement(std::vector<int>& nums, int val)
 
     return k;
 }
+
+ListNode* Solution::mergeTwoLists(ListNode* list1, ListNode* list2) {
+    // Create a dummy node to simplify edge cases
+    ListNode dummy;
+    ListNode* tail = &dummy;
+
+    // Traverse both lists
+    while (list1 != nullptr && list2 != nullptr) {
+        if (list1->val <= list2->val) {
+            tail->next = list1;  // Add list1's node
+            list1 = list1->next; // Move list1's pointer
+        }
+        else {
+            tail->next = list2;  // Add list2's node
+            list2 = list2->next; // Move list2's pointer
+        }
+        tail = tail->next;  // Move the tail pointer
+    }
+
+    // Attach the remaining nodes of the non-empty list
+    if (list1 != nullptr) {
+        tail->next = list1;
+    }
+    else {
+        tail->next = list2;
+    }
+
+    return dummy.next;  // The merged list starts from dummy.next
+}
