@@ -69,3 +69,28 @@ ListNode* Solution::mergeTwoLists(ListNode* list1, ListNode* list2) {
 
     return dummy.next;  // The merged list starts from dummy.next
 }
+
+int Solution::romanToInt(std::string s) {
+    std::unordered_map<char, int> romanMap = {
+        {'I', 1}, {'V', 5}, {'X', 10}, {'L', 50},
+        {'C', 100}, {'D', 500}, {'M', 1000}
+    };
+
+    int total = 0;
+    int n = s.size();
+
+    for (int i = 0; i < n; ++i) {
+        int current = romanMap[s[i]];
+        int next = (i + 1 < n) ? romanMap[s[i + 1]] : 0;
+
+        if (current < next) {
+            // Subtraction case
+            total -= current;
+        }
+        else {
+            // Addition case
+            total += current;
+        }
+    }
+    return total;
+}

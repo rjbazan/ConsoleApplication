@@ -1,6 +1,8 @@
 #pragma once
 
 #include <vector>
+#include <unordered_map>
+#include <string>
 
 struct ListNode {
 	int val;
@@ -28,4 +30,6 @@ public:
 	// Merge the two lists into one sorted list.The list should be made by splicing together the nodes of the first two lists.
 	// Return the head of the merged linked list.
 	static ListNode* mergeTwoLists(ListNode* list1, ListNode* list2);
+
+	static int romanToInt(std::string s);
 };
